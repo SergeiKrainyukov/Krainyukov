@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="primary_color">#003459</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#F8F8F8</color>
+    <color name="grey_divider">#BCBCBC</color>
+
+    <color name="theme_light_grey">#515d74</color>
+    <color name="theme_green">#49b857</color>
+    <color name="theme_dark_grey">#212525</color>
+    <color name="theme_yellow">#f3b000</color>
+    <color name="theme_violet">#6767f5</color>
+
+    <color name="test_primary">#121212</color>
+    <color name="test_secondary">#1E1E1E</color>
+    <color name="test_text_primary">#FFFFFF</color>
+    <color name="test_text_secondary">#8D8D8D</color>
+    <color name="test_accent">#0B8F92</color>
+    <color name="test_divider">#333333</color>
+    <color name="test_error">#CF6679</color>
+    <color name="test_success">#00D65F</color>
+    <color name="test_toolbar">#006400</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#8D8D8D</color>
 </resources>
