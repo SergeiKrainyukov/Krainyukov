@@ -1,4 +1,4 @@
-package com.sergeikrainyukov.myfavoritefilms.presentation
+package com.sergeikrainyukov.myfavoritefilms.presentation.common
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

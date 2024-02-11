@@ -8,6 +8,8 @@ android {
     namespace = "com.sergeikrainyukov.myfavoritefilms"
     compileSdk = 34
 
+    android.buildFeatures.buildConfig = true
+
     defaultConfig {
         applicationId = "com.sergeikrainyukov.myfavoritefilms"
         minSdk = 24
@@ -18,9 +20,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
+            buildConfigField ("String", "API_KEY", "\"e30ffed0-76ab-4dd6-b41f-4c9da2b2735b\"")
+            buildConfigField ("String", "BASE_URL", "\"https://kinopoiskapiunofficial.tech/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

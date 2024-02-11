@@ -1,8 +1,8 @@
 package com.sergeikrainyukov.myfavoritefilms.domain.entity
 
-data class Film(
+data class FilmItem(
     val id: Int,
     val name: String,
     val image: String,
-    val year: Int,
+    val year: String,
 )

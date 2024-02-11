@@ -17,7 +17,7 @@
             android:layout_height="200dp">
 
             <ImageView
-                android:id="@+id/event_image"
+                android:id="@+id/film_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -44,7 +44,7 @@
             tools:text="День здоровья" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/year"
             android:textColor="@color/white"
             android:layout_marginVertical="5dp"
             android:layout_width="match_parent"
