@@ -13,7 +13,7 @@ class FilmsListAdapter : ListAdapter<FilmListItem, FilmItemViewHolder>(FilmItemD
     var addToFavoritesAction: ((Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false)
         return FilmItemViewHolder(view, addToFavoritesAction)
     }
 
