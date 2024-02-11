@@ -7,7 +7,11 @@ import com.bumptech.glide.Glide
 import com.sergeikrainyukov.myfavoritefilms.R
 import com.sergeikrainyukov.myfavoritefilms.presentation.model.FilmListItem
 
-class FilmItemViewHolder(private val view: View, private val addToFavoritesAction: ((Int) -> Unit)?) :
+class FilmItemViewHolder(
+    private val view: View,
+    private val addToFavoritesAction: (Int) -> Unit,
+    private val openFilmDescriptionAction: (Int) -> Unit
+) :
     RecyclerView.ViewHolder(view) {
     fun bind(filmListItem: FilmListItem) {
         with(view) {
@@ -16,6 +20,13 @@ class FilmItemViewHolder(private val view: View, private val addToFavoritesActio
             if (filmListItem.image.isNotBlank()) Glide.with(itemView.context)
                 .load(filmListItem.image)
                 .into(findViewById(R.id.film_image))
+            setOnClickListener {
+                openFilmDescriptionAction.invoke(filmListItem.id)
+            }
+            setOnLongClickListener {
+                addToFavoritesAction.invoke(filmListItem.id)
+                true
+            }
         }
     }
 }

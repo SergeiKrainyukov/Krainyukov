@@ -8,13 +8,14 @@ import com.sergeikrainyukov.myfavoritefilms.R
 import com.sergeikrainyukov.myfavoritefilms.presentation.model.FilmListItem
 import com.sergeikrainyukov.myfavoritefilms.presentation.viewHolders.FilmItemViewHolder
 
-class FilmsListAdapter : ListAdapter<FilmListItem, FilmItemViewHolder>(FilmItemDiffCallback())  {
-
-    var addToFavoritesAction: ((Int) -> Unit)? = null
+class FilmsListAdapter(
+    private val addToFavoritesAction: (Int) -> Unit,
+    private val openFilmDescriptionAction: (Int) -> Unit
+) : ListAdapter<FilmListItem, FilmItemViewHolder>(FilmItemDiffCallback())  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false)
-        return FilmItemViewHolder(view, addToFavoritesAction)
+        return FilmItemViewHolder(view, addToFavoritesAction, openFilmDescriptionAction)
     }
 
     override fun onBindViewHolder(holder: FilmItemViewHolder, position: Int) {

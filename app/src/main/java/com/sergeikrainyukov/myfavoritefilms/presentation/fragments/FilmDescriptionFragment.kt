@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.sergeikrainyukov.myfavoritefilms.R
+import com.sergeikrainyukov.myfavoritefilms.databinding.FragmentFilmDescriptionBinding
+import com.sergeikrainyukov.myfavoritefilms.databinding.FragmentFilmsListBinding
 
 class FilmDescriptionFragment : Fragment() {
     private var filmId: Int? = null
+
+    private lateinit var binding: FragmentFilmDescriptionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +24,9 @@ class FilmDescriptionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_film_description, container, false)
+    ): View {
+        binding = FragmentFilmDescriptionBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {

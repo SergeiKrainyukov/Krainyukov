@@ -9,11 +9,12 @@ import com.sergeikrainyukov.myfavoritefilms.MyFavoriteFilmsApp
 import com.sergeikrainyukov.myfavoritefilms.R
 import com.sergeikrainyukov.myfavoritefilms.databinding.FragmentFilmsListBinding
 import com.sergeikrainyukov.myfavoritefilms.presentation.adapters.FilmsListAdapter
+import com.sergeikrainyukov.myfavoritefilms.presentation.common.Navigator
 import com.sergeikrainyukov.myfavoritefilms.presentation.common.collectFlow
 import com.sergeikrainyukov.myfavoritefilms.presentation.viewModels.FilmsListFragmentViewModel
 import javax.inject.Inject
 
-class FilmsListFragment : Fragment(R.layout.fragment_films_list) {
+class FilmsListFragment : Fragment() {
     private lateinit var binding: FragmentFilmsListBinding
 
     private lateinit var filmsAdapter: FilmsListAdapter
@@ -47,10 +48,10 @@ class FilmsListFragment : Fragment(R.layout.fragment_films_list) {
     }
 
     private fun initRecyclerView() {
-        filmsAdapter = FilmsListAdapter()
-        filmsAdapter.addToFavoritesAction = {
-            viewModel.onClickAddToFavorites(it)
-        }
+        filmsAdapter = FilmsListAdapter(
+            addToFavoritesAction = { viewModel.onClickAddToFavorites(it) },
+            openFilmDescriptionAction = { openFilmsDescriptionFragment(it) }
+        )
         binding.eventsRv.adapter = filmsAdapter
 
     }
@@ -59,5 +60,12 @@ class FilmsListFragment : Fragment(R.layout.fragment_films_list) {
         collectFlow(viewModel.filmsState) {
             filmsAdapter.submitList(it)
         }
+    }
+
+    private fun openFilmsDescriptionFragment(filmId: Int) {
+        Navigator.navigateReplaceSaveStack(
+            FilmDescriptionFragment.newInstance(filmId),
+            parentFragmentManager
+        )
     }
 }
