@@ -1,7 +1,8 @@
-package com.sergeikrainyukov.myfavoritefilms
+package com.sergeikrainyukov.myfavoritefilms.presentation
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.sergeikrainyukov.myfavoritefilms.R
 
 object Navigator {
     fun navigateReplace(fragment: Fragment, fragmentManager: FragmentManager) {
