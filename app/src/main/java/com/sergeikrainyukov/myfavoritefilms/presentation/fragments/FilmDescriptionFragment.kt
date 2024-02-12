@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.sergeikrainyukov.myfavoritefilms.MyFavoriteFilmsApp
 import com.sergeikrainyukov.myfavoritefilms.R
@@ -57,6 +58,9 @@ class FilmDescriptionFragment : Fragment() {
                 genres.text = getString(R.string.genre).plus(" ").plus(it.genres)
                 countries.text = getString(R.string.country).plus(" ").plus(it.countries)
             }
+        }
+        collectFlow(viewModel.errorState) {
+            Toast.makeText(requireContext(), "Произошла ошибка", Toast.LENGTH_LONG).show()
         }
     }
 

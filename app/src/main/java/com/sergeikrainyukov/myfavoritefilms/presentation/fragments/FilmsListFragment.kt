@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sergeikrainyukov.myfavoritefilms.MyFavoriteFilmsApp
 import com.sergeikrainyukov.myfavoritefilms.R
@@ -59,6 +60,9 @@ class FilmsListFragment : Fragment() {
     private fun bindViewModel() {
         collectFlow(viewModel.filmsState) {
             filmsAdapter.submitList(it)
+        }
+        collectFlow(viewModel.errorState) {
+            Toast.makeText(requireContext(), "Произошла ошибка", Toast.LENGTH_LONG).show()
         }
     }
 
