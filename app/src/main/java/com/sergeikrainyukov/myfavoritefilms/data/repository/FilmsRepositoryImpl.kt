@@ -1,6 +1,7 @@
 package com.sergeikrainyukov.myfavoritefilms.data.repository
 
 import com.sergeikrainyukov.myfavoritefilms.data.network.api.FilmsApi
+import com.sergeikrainyukov.myfavoritefilms.domain.entity.Film
 import com.sergeikrainyukov.myfavoritefilms.domain.entity.FilmItem
 import com.sergeikrainyukov.myfavoritefilms.domain.repository.FilmsRepository
 import javax.inject.Inject
@@ -12,7 +13,7 @@ class FilmsRepositoryImpl @Inject constructor(
         return filmsApi.getFilms(type = "TOP_100_POPULAR_FILMS").films.map { it.toModel() }
     }
 
-    override suspend fun getFilmById(id: Int): List<FilmItem> {
-        return emptyList()
+    override suspend fun getFilmById(id: Int): Film {
+        return filmsApi.getFilm(id).toModel()
     }
 }
