@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/test_primary"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/test_primary">
 
     <TextView
         android:id="@+id/favorite_tab_button"
         style="@style/NormalTextStyleWhite"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_background"
         android:backgroundTint="@color/test_toolbar"
         android:padding="10dp"
@@ -23,10 +23,10 @@
     <TextView
         android:id="@+id/all_tab_button"
         style="@style/NormalTextStyleWhite"
-        android:layout_marginTop="20dp"
         android:layout_width="130dp"
-        android:layout_marginStart="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_background"
         android:backgroundTint="@color/test_secondary"
         android:gravity="center"
@@ -35,14 +35,48 @@
         app:layout_constraintStart_toEndOf="@+id/favorite_tab_button"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/error_message"
+        style="@style/NormalTextStyleWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/error"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_btn"
+        style="@style/NormalTextStyleWhite"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/test_toolbar"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/update"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/error_message" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/events_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/all_tab_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_tab_button"
         tools:listitem="@layout/item_film" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
