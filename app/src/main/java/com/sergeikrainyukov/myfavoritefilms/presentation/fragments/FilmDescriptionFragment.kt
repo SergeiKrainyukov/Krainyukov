@@ -1,19 +1,17 @@
 package com.sergeikrainyukov.myfavoritefilms.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.sergeikrainyukov.myfavoritefilms.MyFavoriteFilmsApp
 import com.sergeikrainyukov.myfavoritefilms.R
 import com.sergeikrainyukov.myfavoritefilms.databinding.FragmentFilmDescriptionBinding
-import com.sergeikrainyukov.myfavoritefilms.databinding.FragmentFilmsListBinding
 import com.sergeikrainyukov.myfavoritefilms.presentation.common.collectFlow
 import com.sergeikrainyukov.myfavoritefilms.presentation.viewModels.FilmDescriptionFragmentViewModel
-import com.sergeikrainyukov.myfavoritefilms.presentation.viewModels.FilmsListFragmentViewModel
 import kotlinx.coroutines.flow.filterNotNull
 import javax.inject.Inject
 
@@ -49,6 +47,8 @@ class FilmDescriptionFragment : Fragment() {
 
     private fun bindViewModel() {
         collectFlow(viewModel.filmState.filterNotNull()) {
+            changeVisibilityOfMainViews(true)
+            changeVisibilityOfErrorViews(false)
             with(binding) {
                 if (it.image.isNotBlank()) Glide.with(requireContext())
                     .load(it.image)
@@ -60,8 +60,30 @@ class FilmDescriptionFragment : Fragment() {
             }
         }
         collectFlow(viewModel.errorState) {
-            Toast.makeText(requireContext(), "Произошла ошибка", Toast.LENGTH_LONG).show()
+            changeVisibilityOfMainViews(false)
+            changeVisibilityOfErrorViews(true)
+            binding.errorBtn.apply {
+                isVisible = true
+                setOnClickListener {
+                    filmId?.let { it1 -> viewModel.init(it1) }
+                }
+            }
+            binding.errorMessage.isVisible = true
+
         }
+    }
+
+    private fun changeVisibilityOfMainViews(isVisible: Boolean) {
+        binding.filmImage.isVisible = isVisible
+        binding.title.isVisible = isVisible
+        binding.description.isVisible = isVisible
+        binding.genres.isVisible = isVisible
+        binding.countries.isVisible = isVisible
+    }
+
+    private fun changeVisibilityOfErrorViews(isVisible: Boolean) {
+        binding.errorMessage.isVisible = isVisible
+        binding.errorBtn.isVisible = isVisible
     }
 
     companion object {

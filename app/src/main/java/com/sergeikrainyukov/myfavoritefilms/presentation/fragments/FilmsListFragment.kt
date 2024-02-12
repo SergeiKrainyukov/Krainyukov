@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.sergeikrainyukov.myfavoritefilms.MyFavoriteFilmsApp
-import com.sergeikrainyukov.myfavoritefilms.R
 import com.sergeikrainyukov.myfavoritefilms.databinding.FragmentFilmsListBinding
 import com.sergeikrainyukov.myfavoritefilms.presentation.adapters.FilmsListAdapter
 import com.sergeikrainyukov.myfavoritefilms.presentation.common.Navigator
@@ -60,22 +58,29 @@ class FilmsListFragment : Fragment() {
 
     private fun bindViewModel() {
         collectFlow(viewModel.filmsState) {
-            binding.eventsRv.isVisible = true
-            binding.errorBtn.isVisible = false
-            binding.errorMessage.isVisible = false
+            changeVisibilityOfMainViews(true)
+            changeVisibilityOfErrorViews(false)
             filmsAdapter.submitList(it)
         }
         collectFlow(viewModel.errorState) {
-            binding.eventsRv.isVisible = false
+            changeVisibilityOfMainViews(false)
+            changeVisibilityOfErrorViews(true)
             binding.errorBtn.apply {
-                isVisible = true
                 setOnClickListener {
                     viewModel.init()
                 }
             }
-            binding.errorMessage.isVisible = true
 
         }
+    }
+
+    private fun changeVisibilityOfMainViews(isVisible: Boolean) {
+        binding.eventsRv.isVisible = isVisible
+    }
+
+    private fun changeVisibilityOfErrorViews(isVisible: Boolean) {
+        binding.errorMessage.isVisible = isVisible
+        binding.errorBtn.isVisible = isVisible
     }
 
     private fun openFilmsDescriptionFragment(filmId: Int) {
